@@ -1,0 +1,131 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "almond",
+  "name": "Streamloop",
+  "description": "Live stream pre-recorded videos to YouTube or any RTMP platform — 24/7, up to 4K 60fps. Cloud-based, no OBS, no PC required. Pay-per-use. Free credits to try.",
+  "colors": {
+    "primary": "#166E3F",
+    "light": "#26BD6C",
+    "dark": "#166E3F"
+  },
+  "favicon": "/favicon.ico",
+  "icons": {
+    "library": "lucide"
+  },
+  "styling": {
+    "eyebrows": "breadcrumbs"
+  },
+  "contextual": {
+    "options": ["copy", "view", "assistant", "mcp", "add-mcp"]
+  },
+  "navigation": {
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Home",
+          "icon": "house",
+          "href": "https://streamloop.app"
+        }
+      ]
+    },
+    "directory": "card",
+    "groups": [
+      {
+        "group": "Platform",
+        "icon": "layers",
+        "expanded": true,
+        "pages": [
+          "quickstart",
+          "concepts",
+          "features",
+          "settings"
+        ]
+      },
+      {
+        "group": "Setting up your 24/7 stream",
+        "icon": "video",
+        "expanded": true,
+        "pages": [
+          "set-up-your-destination",
+          {
+            "group": "Destinations",
+            "expanded": true,
+            "pages": [
+              "platform/facebook-live",
+              "platform/instagram",
+              "platform/youtube",
+              "platform/youtube-rtmp",
+              "platform/kick",
+              "platform/tiktok",
+              "platform/twitch"
+            ]
+          },
+          "get-your-stream-live",
+          "upload-your-video-and-audio-playlist"
+        ]
+      },
+      {
+        "group": "Integrations",
+        "icon": "plug",
+        "expanded": true,
+        "pages": [
+          "you-tube-integration",
+          "mcp-agent"
+        ]
+      },
+      {
+        "group": "Resources",
+        "pages": [
+          "reliability-guarantees",
+          "terms-of-service",
+          "privacy-policy"
+        ]
+      }
+    ]
+  },
+  "logo": {
+    "light": "/images/Group36.svg",
+    "dark": "/images/logo-full-width-s7Ak8428.svg",
+    "href": "https://streamloop.app"
+  },
+  "navbar": {
+    "links": [
+      {
+        "href": "https://streamloop.app/#pricing",
+        "label": "Pricing"
+      },
+      {
+        "href": "https://streamloop.app/blog",
+        "label": "Blog"
+      },
+      {
+        "href": "https://streamloop.app/auth/login",
+        "label": "Sign in"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Dashboard",
+      "href": "https://streamloop.app/loops"
+    }
+  },
+  "footer": {
+    "socials": {
+      "x": "https://x.com/streamloopapp",
+      "linkedin": "https://linkedin.com/company/streamloop",
+      "github": "https://github.com/streamloopapp"
+    }
+  },
+  "fonts": {
+    "family": "Hanken Grotesk"
+  },
+  "background": {
+    "color": {
+      "dark": "#0D0D0E"
+    }
+  },
+  "appearance": {
+    "default": "dark",
+    "strict": true
+  }
+}
