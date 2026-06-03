@@ -1,0 +1,6657 @@
+{
+  "components": {
+    "schemas": {
+      "ApplyPlaylistOperationsRequest": {
+        "properties": {
+          "basedOnVersion": {
+            "description": "If set, reject the batch with CONFLICT when playlists.version has\nadvanced past this value.",
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "operations": {
+            "items": {
+              "properties": {
+                "addObjects": {
+                  "properties": {
+                    "index": {
+                      "type": [
+                        "integer",
+                        "null"
+                      ]
+                    },
+                    "objectIds": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "position": {
+                      "enum": [
+                        "START",
+                        "END",
+                        "INDEX"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "objectIds",
+                    "position"
+                  ],
+                  "type": "object"
+                },
+                "removeItems": {
+                  "properties": {
+                    "itemIds": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "itemIds"
+                  ],
+                  "type": "object"
+                },
+                "reorderItems": {
+                  "properties": {
+                    "moves": {
+                      "items": {
+                        "properties": {
+                          "index": {
+                            "type": [
+                              "integer",
+                              "null"
+                            ]
+                          },
+                          "itemId": {
+                            "type": "string"
+                          },
+                          "position": {
+                            "enum": [
+                              "START",
+                              "END",
+                              "INDEX"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "itemId",
+                          "position"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "moves"
+                  ],
+                  "type": "object"
+                },
+                "updateSettings": {
+                  "properties": {
+                    "mode": {
+                      "enum": [
+                        "sequential",
+                        "shuffle"
+                      ],
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "playlistId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "operations",
+          "playlistId"
+        ],
+        "type": "object"
+      },
+      "BillingOverview": {
+        "properties": {
+          "billing": {
+            "properties": {
+              "balance": {
+                "description": "Dollar balance computed from credits (creditsLeft / 1,000,000)",
+                "type": "number"
+              },
+              "creditsLeft": {
+                "type": "integer"
+              },
+              "eligibleForFreeCredits": {
+                "description": "Whether this user can still claim the one-time $5 signup credits.",
+                "type": "boolean"
+              },
+              "goodStanding": {
+                "type": "boolean"
+              },
+              "id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "balance",
+              "creditsLeft",
+              "eligibleForFreeCredits",
+              "goodStanding",
+              "id"
+            ],
+            "type": "object"
+          },
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "type": "object"
+      },
+      "CheckoutLink": {
+        "properties": {
+          "checkoutUrl": {
+            "type": "string"
+          },
+          "credits": {
+            "description": "Credits that will be added to the account after payment",
+            "type": "integer"
+          },
+          "sessionId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "checkoutUrl",
+          "credits",
+          "sessionId"
+        ],
+        "type": "object"
+      },
+      "CopyPlaylistRequest": {
+        "properties": {
+          "targetPlaylistId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "targetPlaylistId"
+        ],
+        "type": "object"
+      },
+      "CreateRtmpDestinationRequest": {
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "rtmpKey": {
+            "type": "string"
+          },
+          "rtmpUrl": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "rtmpKey",
+          "rtmpUrl"
+        ],
+        "type": "object"
+      },
+      "CreateStreamRequest": {
+        "description": "CreateStreamInput is used for create Stream object.\nInput was generated by ent.",
+        "properties": {
+          "agentModeEnabled": {
+            "description": "Feature flag: run stream in agent mode (/agent) with replica-based orchestration.",
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "audioUploadObjectID": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "destinationID": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "framerate": {
+            "enum": [
+              "f_24",
+              "f_25",
+              "f_30",
+              "f_60"
+            ],
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "name": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "playlistIDs": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "preparedPlaylistIDs": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "quality": {
+            "enum": [
+              "q_720p",
+              "q_1080p",
+              "q_1440p",
+              "q_2160p"
+            ],
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "runBackupStream": {
+            "description": "Stream preference: enable backup destination streaming in agent mode.",
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "scheduleEndAt": {
+            "format": "date-time",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "scheduleStartAt": {
+            "format": "date-time",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "streamBackend": {
+            "description": "RTMP publisher backend. 'manifest' runs manifest-streamer in-process; 'ffmpeg' or empty uses the legacy subprocess. Editing is gated by the native_backend_streamer PostHog feature flag in the update resolver — the column is nullable so admin tooling can clear it.",
+            "enum": [
+              "ffmpeg",
+              "manifest"
+            ],
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "streamDestination": {
+            "enum": [
+              "youtube"
+            ],
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "streamDuration": {
+            "description": "Stream duration in seconds. 0 = never expires. Copied from user default on creation.",
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "streamKey": {
+            "description": "DEPRECATED: use destination_id. Kept for backward-compat during destination migration.",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "streamStateID": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "videoUploadObjectID": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "youtubeSettingsID": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "type": "object"
+      },
+      "CreateUploadFromLinkRequest": {
+        "properties": {
+          "quality": {
+            "description": "Quality preference (default BEST = peak).",
+            "enum": [
+              "BEST",
+              "P2160",
+              "P1440",
+              "P1080",
+              "P720",
+              "P480",
+              "P360"
+            ],
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "type": {
+            "enum": [
+              "VIDEO",
+              "AUDIO"
+            ],
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "url"
+        ],
+        "type": "object"
+      },
+      "CreateUploadRequest": {
+        "description": "CreateS3ObjectInput is used for create S3Object object.\nInput was generated by ent.",
+        "properties": {
+          "duration": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "fileSize": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "fps": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "hasAudio": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "hasVideo": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "height": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "isDeleted": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "mimeType": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "orientation": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "path": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "type": {
+            "enum": [
+              "audio",
+              "video",
+              "image"
+            ],
+            "type": "string"
+          },
+          "width": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "mimeType",
+          "name",
+          "type"
+        ],
+        "type": "object"
+      },
+      "CryptoCurrency": {
+        "properties": {
+          "chainId": {
+            "description": "EVM chain ID a WalletConnect/wagmi client should switch to before signing.\nNull for non-EVM chains (Solana, Tron, Bitcoin, TON, …) — those need\ntheir own connector libraries.",
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "contractAddress": {
+            "description": "Token contract address for ERC20-style tokens on EVM chains\n(and SPL mint for Solana). Null for native coins (ETH, SOL, MATIC, BTC, …)\nwhere a wallet sends a plain transfer instead of calling a contract.",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "decimals": {
+            "description": "Decimals for unit conversion. ERC20 tokens vary (USDT=6, DAI=18); native\ncoins follow chain convention (ETH=18, SOL=9, BTC=8). Defaults to 18 when\nunknown so EVM transfers stay safe.",
+            "type": "integer"
+          },
+          "icon": {
+            "description": "SVG icon URL.",
+            "type": "string"
+          },
+          "id": {
+            "description": "0xProcessing currency identifier, e.g. \"USDT (TRC20)\" or \"BTC\".",
+            "type": "string"
+          },
+          "name": {
+            "description": "Human-readable name from manifest, e.g. \"Tether\".",
+            "type": "string"
+          },
+          "network": {
+            "description": "Network code from the manifest, e.g. \"TRC20\", \"ERC20\", \"POLYGON\", \"SOL\".",
+            "type": "string"
+          },
+          "rateUSD": {
+            "description": "Price of 1 unit in USD (from Binance; 1.0 for stablecoins).",
+            "type": "number"
+          },
+          "symbol": {
+            "description": "Base symbol, e.g. \"USDT\".",
+            "type": "string"
+          },
+          "transferKind": {
+            "description": "How a frontend should construct the payment transaction.",
+            "enum": [
+              "EVM_NATIVE",
+              "EVM_ERC20",
+              "NON_EVM"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "decimals",
+          "icon",
+          "id",
+          "name",
+          "network",
+          "rateUSD",
+          "symbol",
+          "transferKind"
+        ],
+        "type": "object"
+      },
+      "CryptoDepositAddress": {
+        "properties": {
+          "address": {
+            "description": "Blockchain deposit address.",
+            "type": "string"
+          },
+          "id": {
+            "description": "0xProcessing currency identifier used to create this wallet.",
+            "type": "string"
+          },
+          "network": {
+            "description": "Network name, e.g. \"TRC20\", \"ERC20\", \"Bitcoin\", \"Solana\".",
+            "type": "string"
+          },
+          "tag": {
+            "description": "Memo/tag required for TON, XRP, etc. Null if not required.",
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "address",
+          "id",
+          "network"
+        ],
+        "type": "object"
+      },
+      "Destination": {
+        "properties": {
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "custom_rtmp",
+              "youtube"
+            ],
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "rtmpURL": {
+            "description": "Full RTMP ingest URL, e.g. rtmp://live.twitch.tv/app. Null for non-rtmp kinds.",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "rtmpUrlMasked": {
+            "description": "Display-safe RTMP publish URL with the stream key redacted.",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "status": {
+            "enum": [
+              "active",
+              "needs_reauth",
+              "revoked",
+              "disabled"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "createdAt",
+          "id",
+          "kind",
+          "name",
+          "status"
+        ],
+        "type": "object"
+      },
+      "DestinationList": {
+        "description": "A page of destination items.",
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/DestinationSummary"
+            },
+            "type": "array"
+          },
+          "page": {
+            "$ref": "#/components/schemas/Page"
+          }
+        },
+        "required": [
+          "data",
+          "page"
+        ],
+        "type": "object"
+      },
+      "DestinationSummary": {
+        "properties": {
+          "archivedAt": {
+            "format": "date-time",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "custom_rtmp",
+              "youtube"
+            ],
+            "type": "string"
+          },
+          "lastUsedAt": {
+            "format": "date-time",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "name": {
+            "type": "string"
+          },
+          "rtmpURL": {
+            "description": "Full RTMP ingest URL, e.g. rtmp://live.twitch.tv/app. Null for non-rtmp kinds.",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "status": {
+            "enum": [
+              "active",
+              "needs_reauth",
+              "revoked",
+              "disabled"
+            ],
+            "type": "string"
+          },
+          "ytChannelTitleCached": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "createdAt",
+          "id",
+          "kind",
+          "name",
+          "status"
+        ],
+        "type": "object"
+      },
+      "InvoiceList": {
+        "description": "A page of invoice items.",
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/InvoiceSummary"
+            },
+            "type": "array"
+          },
+          "page": {
+            "$ref": "#/components/schemas/Page"
+          }
+        },
+        "required": [
+          "data",
+          "page"
+        ],
+        "type": "object"
+      },
+      "InvoiceSummary": {
+        "properties": {
+          "cost": {
+            "type": "integer"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "credits": {
+            "type": "integer"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "method": {
+            "type": "string"
+          },
+          "receiptURL": {
+            "description": "Receipt/invoice download URL from the payment provider. Persisted at webhook time when available, otherwise fetched lazily on first access.",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "remainingCredits": {
+            "type": "integer"
+          },
+          "state": {
+            "enum": [
+              "cancelled",
+              "pending",
+              "paid"
+            ],
+            "type": "string"
+          },
+          "type": {
+            "enum": [
+              "credit_purchase",
+              "usage_summary",
+              "credit_grant"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "cost",
+          "createdAt",
+          "credits",
+          "currency",
+          "id",
+          "method",
+          "remainingCredits",
+          "state",
+          "type"
+        ],
+        "type": "object"
+      },
+      "Page": {
+        "description": "Cursor-pagination metadata.",
+        "properties": {
+          "hasMore": {
+            "description": "Whether another page is available.",
+            "type": "boolean"
+          },
+          "nextCursor": {
+            "description": "Cursor for the next page, or null on the last page.",
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "nextCursor",
+          "hasMore"
+        ],
+        "type": "object"
+      },
+      "Playlist": {
+        "properties": {
+          "copiedFrom": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "diff": {
+            "description": "Snapshot-vs-draft diff (B-13 first-occurrence-by-objectId\nalgorithm; zero-distance items go in `unchanged`, not `moved`;\nduplicate objectIds matched positionally). When no snapshot exists,\ndiff = { unchanged: items, added: [], removed: [], moved: [] }.",
+            "properties": {
+              "added": {
+                "items": {
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "objectID": {
+                      "type": "string"
+                    },
+                    "position": {
+                      "description": "0-based; positions for a playlist form {0..N-1} exactly. Enforced by mutation layer (full-rewrite) and unique index.",
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "objectID",
+                    "position"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "moved": {
+                "items": {
+                  "properties": {
+                    "fromPosition": {
+                      "type": "integer"
+                    },
+                    "item": {
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "objectID": {
+                          "type": "string"
+                        },
+                        "position": {
+                          "description": "0-based; positions for a playlist form {0..N-1} exactly. Enforced by mutation layer (full-rewrite) and unique index.",
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "objectID",
+                        "position"
+                      ],
+                      "type": "object"
+                    },
+                    "toPosition": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "fromPosition",
+                    "item",
+                    "toPosition"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "removed": {
+                "description": "May reference deleted PlaylistItem rows; projection-only type avoids the non-null hazard (NB-12).",
+                "items": {
+                  "description": "Projection-only frozen-side item (NB-12). Not a Node, no Relay ID,\nno FK hydration. The underlying PlaylistItem row may have been\ndeleted; this type carries the frozen `itemId` string by design so\nthe GraphQL non-null contract `[SnapshotPlaylistItem!]!` cannot\nbe broken by a deletion.",
+                  "properties": {
+                    "itemId": {
+                      "description": "typeid plitm_* — frozen at write; underlying PlaylistItem row may have been deleted.",
+                      "type": "string"
+                    },
+                    "objectId": {
+                      "description": "typeid obj_*",
+                      "type": "string"
+                    },
+                    "position": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "itemId",
+                    "objectId",
+                    "position"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "unchanged": {
+                "items": {
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "objectID": {
+                      "type": "string"
+                    },
+                    "position": {
+                      "description": "0-based; positions for a playlist form {0..N-1} exactly. Enforced by mutation layer (full-rewrite) and unique index.",
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "objectID",
+                    "position"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              }
+            },
+            "required": [
+              "added",
+              "moved",
+              "removed",
+              "unchanged"
+            ],
+            "type": "object"
+          },
+          "hasUnpublishedChanges": {
+            "description": "snapshot != nil && Playlist.version > snapshot.version. Returns\nfalse during the B-11 STREAMING+no-snapshot window — deliberate:\nthe stream is live but nothing has been published yet.",
+            "type": "boolean"
+          },
+          "id": {
+            "type": "string"
+          },
+          "items": {
+            "items": {
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "object": {
+                  "properties": {
+                    "duration": {
+                      "type": [
+                        "integer",
+                        "null"
+                      ]
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "enum": [
+                        "audio",
+                        "video",
+                        "image"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name",
+                    "type"
+                  ],
+                  "type": "object"
+                },
+                "objectID": {
+                  "type": "string"
+                },
+                "position": {
+                  "description": "0-based; positions for a playlist form {0..N-1} exactly. Enforced by mutation layer (full-rewrite) and unique index.",
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "id",
+                "object",
+                "objectID",
+                "position"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "kind": {
+            "enum": [
+              "video",
+              "audio"
+            ],
+            "type": "string"
+          },
+          "liveItems": {
+            "description": "Projected from PlaylistSnapshot.items JSON (NB-12) — never\nFK-hydrated against the live PlaylistItem table. Empty list during\nthe B-11 STREAMING+no-snapshot window.",
+            "items": {
+              "description": "Projection-only frozen-side item (NB-12). Not a Node, no Relay ID,\nno FK hydration. The underlying PlaylistItem row may have been\ndeleted; this type carries the frozen `itemId` string by design so\nthe GraphQL non-null contract `[SnapshotPlaylistItem!]!` cannot\nbe broken by a deletion.",
+              "properties": {
+                "itemId": {
+                  "description": "typeid plitm_* — frozen at write; underlying PlaylistItem row may have been deleted.",
+                  "type": "string"
+                },
+                "objectId": {
+                  "description": "typeid obj_*",
+                  "type": "string"
+                },
+                "position": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "itemId",
+                "objectId",
+                "position"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "liveVersion": {
+            "description": "PlaylistSnapshot.version — Playlist.version frozen at the last LIVE\nwrite. Returns 0 when no snapshot exists OR during the B-11\nSTREAMING+no-snapshot transient window (WriteInitialPlaylistSnapshot\nretry).",
+            "type": "integer"
+          },
+          "mode": {
+            "enum": [
+              "sequential",
+              "shuffle"
+            ],
+            "type": "string"
+          },
+          "publishStatus": {
+            "description": "Workflow-state derivation. NB-13: PREPARING wins over PENDING even\nwhen a concurrent edit advances Playlist.version while a publish\nis preparing.",
+            "enum": [
+              "IDLE",
+              "PENDING",
+              "PREPARING",
+              "FAILED",
+              "NOT_LIVE"
+            ],
+            "type": "string"
+          },
+          "streamID": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "version": {
+            "description": "Bumped by 1 per committed spec mutation batch. Used for optimistic concurrency and as the snapshot handle for PreparePlaylistWorkflow.",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "createdAt",
+          "diff",
+          "hasUnpublishedChanges",
+          "id",
+          "kind",
+          "liveItems",
+          "liveVersion",
+          "mode",
+          "publishStatus",
+          "streamID",
+          "updatedAt",
+          "version"
+        ],
+        "type": "object"
+      },
+      "PlaylistList": {
+        "description": "A page of playlist items.",
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/PlaylistSummary"
+            },
+            "type": "array"
+          },
+          "page": {
+            "$ref": "#/components/schemas/Page"
+          }
+        },
+        "required": [
+          "data",
+          "page"
+        ],
+        "type": "object"
+      },
+      "PlaylistSummary": {
+        "properties": {
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "video",
+              "audio"
+            ],
+            "type": "string"
+          },
+          "mode": {
+            "enum": [
+              "sequential",
+              "shuffle"
+            ],
+            "type": "string"
+          },
+          "streamID": {
+            "type": "string"
+          },
+          "version": {
+            "description": "Bumped by 1 per committed spec mutation batch. Used for optimistic concurrency and as the snapshot handle for PreparePlaylistWorkflow.",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "createdAt",
+          "id",
+          "kind",
+          "mode",
+          "streamID",
+          "version"
+        ],
+        "type": "object"
+      },
+      "Problem": {
+        "description": "RFC 7807 problem-details error body.",
+        "properties": {
+          "code": {
+            "description": "A stable, machine-readable error code.",
+            "type": "string"
+          },
+          "detail": {
+            "description": "A human-readable explanation specific to this occurrence.",
+            "type": "string"
+          },
+          "status": {
+            "description": "The HTTP status code.",
+            "type": "integer"
+          },
+          "title": {
+            "description": "A short, human-readable summary of the problem.",
+            "type": "string"
+          },
+          "type": {
+            "description": "A URI reference identifying the problem type.",
+            "format": "uri-reference",
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "title",
+          "status",
+          "detail",
+          "code"
+        ],
+        "type": "object"
+      },
+      "PublishPlaylistRequest": {
+        "properties": {
+          "expectedDraftVersion": {
+            "description": "Required (asymmetric vs ApplyPlaylistOperationsInput.basedOnVersion,\nwhich is optional). Publish is the ONLY user-action that mutates\nruntime state, so editor-side OCC must be deliberate (NB-07). On\nSTALE_DRAFT the editor refetches Playlist { version diff } using\nthe returned currentVersion and retries.",
+            "type": "integer"
+          },
+          "playlistId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "expectedDraftVersion",
+          "playlistId"
+        ],
+        "type": "object"
+      },
+      "ScheduleStreamRequest": {
+        "properties": {
+          "scheduleEndAt": {
+            "format": "date-time",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "scheduleStartAt": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "scheduleStartAt"
+        ],
+        "type": "object"
+      },
+      "Status": {
+        "properties": {
+          "service": {
+            "type": "string"
+          },
+          "status": {
+            "description": "operational | degraded | down",
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "status"
+        ],
+        "type": "object"
+      },
+      "Stream": {
+        "properties": {
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "framerate": {
+            "enum": [
+              "f_24",
+              "f_25",
+              "f_30",
+              "f_60"
+            ],
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "quality": {
+            "enum": [
+              "q_720p",
+              "q_1080p",
+              "q_1440p",
+              "q_2160p"
+            ],
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "state": {
+            "enum": [
+              "draft",
+              "invalid",
+              "scheduled",
+              "preparing",
+              "activating",
+              "active",
+              "failing",
+              "failed",
+              "stopping",
+              "stopped"
+            ],
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "createdAt",
+          "id"
+        ],
+        "type": "object"
+      },
+      "StreamList": {
+        "description": "A page of stream items.",
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/StreamSummary"
+            },
+            "type": "array"
+          },
+          "page": {
+            "$ref": "#/components/schemas/Page"
+          }
+        },
+        "required": [
+          "data",
+          "page"
+        ],
+        "type": "object"
+      },
+      "StreamLiveStats": {
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "youtubeLiveStats": {
+            "description": "Live YouTube viewer + cumulative stats for this stream. Returns null\nwhen the stream's destination isn't a YouTube channel, or when no\nbroadcast has been provisioned yet (the row is still\npre-EnsureBroadcast). Otherwise routes through destinations-gateway,\nwhich caches the underlying videos.list response in JetStream KV\nfor 10 minutes.",
+            "properties": {
+              "concurrentViewers": {
+                "description": "Concurrent live viewers from videos.list(part=liveStreamingDetails). Always 0 when the broadcast is not LIVE.",
+                "type": "integer"
+              },
+              "fetchedAt": {
+                "description": "Server time the gateway last hit YouTube for this row. Stale up to ~10 minutes; surface as 'updated …' in the UI.",
+                "format": "date-time",
+                "type": "string"
+              },
+              "lifecycle": {
+                "description": "Current YouTube broadcast lifecycle (CREATED / READY / TESTING / LIVE / COMPLETE / REVOKED / ERRORED). Use this to gate UI: concurrentViewers is only meaningful while LIVE.",
+                "enum": [
+                  "CREATED",
+                  "READY",
+                  "TESTING",
+                  "LIVE",
+                  "COMPLETE",
+                  "REVOKED",
+                  "ERRORED",
+                  "UNSPECIFIED"
+                ],
+                "type": "string"
+              },
+              "likeCount": {
+                "description": "Cumulative likes from videos.list(part=statistics). Survives post-VOD.",
+                "type": "integer"
+              },
+              "mirrorLastError": {
+                "description": "Translated streaming-error code for the most recent mirror RPC\nfailure, or null on MIRRORED / IDLE. Drives banner copy in the UI\n(see docs/youtube-schedule-mirror/graphql.md). Surfaced as a free-form\nstring code (e.g. YOUTUBE_REAUTH_REQUIRED, YOUTUBE_QUOTA_EXCEEDED,\nYOUTUBE_CHANNEL_BUSY, MIRROR_NOT_POSSIBLE, STUDIO_DRIFT) — there is\nno canonical GraphQL enum for streaming errors today.",
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "mirrorStatus": {
+                "description": "Current state of the YouTube schedule mirror for this stream. IDLE\nwhen the toggle is off; PENDING from intent receipt until the first\nsuccessful YouTube call returns; MIRRORED on success; OUT_OF_SYNC /\nNEEDS_REAUTH / BLOCKED on the corresponding terminal failures.\nSee MirrorStatus for full semantics.",
+                "enum": [
+                  "IDLE",
+                  "PENDING",
+                  "MIRRORED",
+                  "OUT_OF_SYNC",
+                  "NEEDS_REAUTH",
+                  "BLOCKED"
+                ],
+                "type": "string"
+              },
+              "totalViews": {
+                "description": "Cumulative video views from videos.list(part=statistics). Survives post-VOD.",
+                "type": "integer"
+              },
+              "watchUrl": {
+                "description": "Stable public watch URL of the broadcast on YouTube.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "concurrentViewers",
+              "fetchedAt",
+              "lifecycle",
+              "likeCount",
+              "mirrorStatus",
+              "totalViews",
+              "watchUrl"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "type": "object"
+      },
+      "StreamReadiness": {
+        "properties": {
+          "issues": {
+            "items": {
+              "properties": {
+                "code": {
+                  "type": "string"
+                },
+                "error": {
+                  "type": "string"
+                },
+                "path": {
+                  "enum": [
+                    "YOUTUBE",
+                    "VALIDATION"
+                  ],
+                  "type": "string"
+                },
+                "stage": {
+                  "enum": [
+                    "PREFLIGHT"
+                  ],
+                  "type": "string"
+                },
+                "suggestion": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "code",
+                "error",
+                "path",
+                "stage"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "ready": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "issues",
+          "ready"
+        ],
+        "type": "object"
+      },
+      "StreamSummary": {
+        "properties": {
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "state": {
+            "enum": [
+              "draft",
+              "invalid",
+              "scheduled",
+              "preparing",
+              "activating",
+              "active",
+              "failing",
+              "failed",
+              "stopping",
+              "stopped"
+            ],
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "createdAt",
+          "id"
+        ],
+        "type": "object"
+      },
+      "TopUpUsingCardLinkRequest": {
+        "properties": {
+          "amountCents": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "amountCents"
+        ],
+        "type": "object"
+      },
+      "UpdateStreamRequest": {
+        "description": "UpdateStreamInput is used for update Stream object.\nInput was generated by ent.",
+        "properties": {
+          "addPlaylistIDs": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "addPreparedPlaylistIDs": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "agentModeEnabled": {
+            "description": "Feature flag: run stream in agent mode (/agent) with replica-based orchestration.",
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "audioUploadObjectID": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "clearAudioUploadObject": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "clearDestination": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "clearFramerate": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "clearName": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "clearPlaylists": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "clearPreparedPlaylists": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "clearQuality": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "clearScheduleEndAt": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "clearScheduleStartAt": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "clearStreamBackend": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "clearStreamDuration": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "clearStreamKey": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "clearStreamState": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "clearVideoUploadObject": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "clearYoutubeSettings": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "destinationID": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "framerate": {
+            "enum": [
+              "f_24",
+              "f_25",
+              "f_30",
+              "f_60"
+            ],
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "name": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "quality": {
+            "enum": [
+              "q_720p",
+              "q_1080p",
+              "q_1440p",
+              "q_2160p"
+            ],
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "removePlaylistIDs": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "removePreparedPlaylistIDs": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "runBackupStream": {
+            "description": "Stream preference: enable backup destination streaming in agent mode.",
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "scheduleEndAt": {
+            "format": "date-time",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "scheduleStartAt": {
+            "format": "date-time",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "streamBackend": {
+            "description": "RTMP publisher backend. 'manifest' runs manifest-streamer in-process; 'ffmpeg' or empty uses the legacy subprocess. Editing is gated by the native_backend_streamer PostHog feature flag in the update resolver — the column is nullable so admin tooling can clear it.",
+            "enum": [
+              "ffmpeg",
+              "manifest"
+            ],
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "streamDestination": {
+            "enum": [
+              "youtube"
+            ],
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "streamDuration": {
+            "description": "Stream duration in seconds. 0 = never expires. Copied from user default on creation.",
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "streamKey": {
+            "description": "DEPRECATED: use destination_id. Kept for backward-compat during destination migration.",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "streamStateID": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "videoUploadObjectID": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "youtubeSettingsID": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "type": "object"
+      },
+      "Upload": {
+        "properties": {
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "fileSize": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "id": {
+            "type": "string"
+          },
+          "mimeType": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "enum": [
+              "audio",
+              "video",
+              "image"
+            ],
+            "type": "string"
+          },
+          "uploaded": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "createdAt",
+          "id",
+          "mimeType",
+          "name",
+          "type",
+          "uploaded"
+        ],
+        "type": "object"
+      },
+      "UploadList": {
+        "description": "A page of upload items.",
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/UploadSummary"
+            },
+            "type": "array"
+          },
+          "page": {
+            "$ref": "#/components/schemas/Page"
+          }
+        },
+        "required": [
+          "data",
+          "page"
+        ],
+        "type": "object"
+      },
+      "UploadSummary": {
+        "properties": {
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "fileSize": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "id": {
+            "type": "string"
+          },
+          "mimeType": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "enum": [
+              "audio",
+              "video",
+              "image"
+            ],
+            "type": "string"
+          },
+          "uploaded": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "createdAt",
+          "id",
+          "mimeType",
+          "name",
+          "type",
+          "uploaded"
+        ],
+        "type": "object"
+      },
+      "UsageAnalytics": {
+        "description": "Aggregated usage analytics with time-bucketed data.\nGranularity depends on the period:\n  DAY -> hourly buckets\n  WEEK, MONTH -> daily buckets\n  QUARTER, YEAR -> monthly buckets",
+        "properties": {
+          "buckets": {
+            "description": "Time-bucketed usage (hourly, daily, or monthly depending on period)",
+            "items": {
+              "description": "A time-bucketed usage entry (hour, day, or month depending on query period)",
+              "properties": {
+                "credits": {
+                  "type": "integer"
+                },
+                "date": {
+                  "format": "date-time",
+                  "type": "string"
+                },
+                "minutes": {
+                  "type": "integer"
+                },
+                "sessions": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "credits",
+                "date",
+                "minutes",
+                "sessions"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "byQuality": {
+            "description": "Breakdown by stream quality tier",
+            "items": {
+              "properties": {
+                "credits": {
+                  "type": "integer"
+                },
+                "minutes": {
+                  "type": "integer"
+                },
+                "quality": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "credits",
+                "minutes",
+                "quality"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "sessionCount": {
+            "description": "Number of streaming sessions in the requested period",
+            "type": "integer"
+          },
+          "totalCredits": {
+            "description": "Total credits spent in the requested period",
+            "type": "integer"
+          },
+          "totalMinutes": {
+            "description": "Total minutes in the requested period",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "buckets",
+          "byQuality",
+          "sessionCount",
+          "totalCredits",
+          "totalMinutes"
+        ],
+        "type": "object"
+      },
+      "User": {
+        "properties": {
+          "avatarURL": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "defaultStreamDuration": {
+            "description": "Default stream duration in seconds. 0 = never expires, null = system default",
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "email": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "firstName": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "id": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "locale": {
+            "description": "User UI locale preference (BCP-47-like, e.g. \"en-US\"). nil = system default.",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "role": {
+            "enum": [
+              "admin",
+              "user",
+              "operator"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "createdAt",
+          "id",
+          "role"
+        ],
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "apiKey": {
+        "description": "A Streamloop API key (prefix `sl_`), sent in the `X-API-Key` header. Create and manage keys in the dashboard. The simplest auth for programmatic / agent clients — no OAuth flow required; the key acts as its owning user.",
+        "in": "header",
+        "name": "X-API-Key",
+        "type": "apiKey"
+      },
+      "bearerAuth": {
+        "bearerFormat": "JWT",
+        "description": "An OAuth 2.1 bearer access token.",
+        "scheme": "bearer",
+        "type": "http"
+      },
+      "oauth2": {
+        "description": "OAuth 2.1 authorization-code flow with PKCE.",
+        "flows": {
+          "authorizationCode": {
+            "authorizationUrl": "https://auth.streamloop.app/api/auth/oauth2/authorize",
+            "scopes": {
+              "streamloop:billing": "Read billing/usage and create top-up links",
+              "streamloop:destructive": "Delete streams and destinations",
+              "streamloop:read": "Read streams, destinations, playlists, and billing status",
+              "streamloop:write": "Create and control streams, destinations, and playlists"
+            },
+            "tokenUrl": "https://auth.streamloop.app/api/auth/oauth2/token"
+          }
+        },
+        "type": "oauth2"
+      }
+    }
+  },
+  "info": {
+    "contact": {
+      "name": "Streamloop",
+      "url": "https://streamloop.app"
+    },
+    "description": "The Streamloop REST API. Authenticate with either an `X-API-Key` header (a Streamloop API key, prefix `sl_` — simplest for programmatic clients) or an OAuth 2.1 bearer access token (obtain one via https://auth.streamloop.app). Collections are cursor-paginated (`limit` + `cursor`, returning `{ data, page }`). Errors are RFC 7807 problem documents.",
+    "summary": "Programmatic access to Streamloop — create and control 24/7 loop streams, manage media, destinations, playlists, and billing.",
+    "title": "Streamloop API",
+    "version": "1.0.0"
+  },
+  "openapi": "3.1.0",
+  "paths": {
+    "/billing/invoices": {
+      "get": {
+        "operationId": "listInvoices",
+        "parameters": [
+          {
+            "description": "Maximum items to return (1-100, default 20).",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Pagination cursor from a previous response's `page.nextCursor`.",
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvoiceList"
+                }
+              }
+            },
+            "description": "Successful response.",
+            "headers": {
+              "RateLimit-Limit": {
+                "description": "Requests allowed per window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Remaining": {
+                "description": "Requests remaining in the current window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Reset": {
+                "description": "Seconds until the window resets.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Missing or invalid access token."
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The token lacks the required scope or access to the resource."
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The resource does not exist or is not visible to the caller."
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The request body or parameters are invalid."
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Rate limit exceeded. Retry after the indicated delay.",
+            "headers": {
+              "Retry-After": {
+                "description": "Seconds to wait before retrying.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "502": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The upstream data service returned an error."
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "streamloop:read"
+            ]
+          },
+          {
+            "bearerAuth": []
+          },
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "List invoices",
+        "tags": [
+          "billing"
+        ]
+      }
+    },
+    "/billing/overview": {
+      "get": {
+        "operationId": "billingOverview",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/BillingOverview"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              }
+            },
+            "description": "Successful response.",
+            "headers": {
+              "RateLimit-Limit": {
+                "description": "Requests allowed per window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Remaining": {
+                "description": "Requests remaining in the current window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Reset": {
+                "description": "Seconds until the window resets.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Missing or invalid access token."
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The token lacks the required scope or access to the resource."
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The resource does not exist or is not visible to the caller."
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The request body or parameters are invalid."
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Rate limit exceeded. Retry after the indicated delay.",
+            "headers": {
+              "Retry-After": {
+                "description": "Seconds to wait before retrying.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "502": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The upstream data service returned an error."
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "streamloop:read"
+            ]
+          },
+          {
+            "bearerAuth": []
+          },
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Get billing overview",
+        "tags": [
+          "billing"
+        ]
+      }
+    },
+    "/billing/top-up/card-link": {
+      "post": {
+        "description": "Purchase credits by dollar amount. amountCents is the dollar amount in cents (e.g. 500 = $5).\nReturns a checkout URL from the selected payment provider.",
+        "operationId": "topUpUsingCardLink",
+        "parameters": [
+          {
+            "description": "Optional client-generated key. A repeated request with the same key replays the original response (within 24h) instead of re-executing — safe retries.",
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TopUpUsingCardLinkRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CheckoutLink"
+                }
+              }
+            },
+            "description": "Successful response.",
+            "headers": {
+              "RateLimit-Limit": {
+                "description": "Requests allowed per window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Remaining": {
+                "description": "Requests remaining in the current window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Reset": {
+                "description": "Seconds until the window resets.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Missing or invalid access token."
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The token lacks the required scope or access to the resource."
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The resource does not exist or is not visible to the caller."
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The request body or parameters are invalid."
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Rate limit exceeded. Retry after the indicated delay.",
+            "headers": {
+              "Retry-After": {
+                "description": "Seconds to wait before retrying.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "502": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The upstream data service returned an error."
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "streamloop:billing"
+            ]
+          },
+          {
+            "bearerAuth": []
+          },
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Create a card top-up link",
+        "tags": [
+          "billing"
+        ]
+      }
+    },
+    "/billing/usage": {
+      "get": {
+        "operationId": "getUsage",
+        "parameters": [
+          {
+            "description": "Aggregation window.",
+            "in": "query",
+            "name": "period",
+            "required": false,
+            "schema": {
+              "default": "QUARTER",
+              "enum": [
+                "DAY",
+                "WEEK",
+                "MONTH",
+                "QUARTER",
+                "YEAR"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsageAnalytics"
+                }
+              }
+            },
+            "description": "Successful response.",
+            "headers": {
+              "RateLimit-Limit": {
+                "description": "Requests allowed per window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Remaining": {
+                "description": "Requests remaining in the current window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Reset": {
+                "description": "Seconds until the window resets.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Missing or invalid access token."
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The token lacks the required scope or access to the resource."
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The resource does not exist or is not visible to the caller."
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The request body or parameters are invalid."
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Rate limit exceeded. Retry after the indicated delay.",
+            "headers": {
+              "Retry-After": {
+                "description": "Seconds to wait before retrying.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "502": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The upstream data service returned an error."
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "streamloop:read"
+            ]
+          },
+          {
+            "bearerAuth": []
+          },
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Get usage analytics",
+        "tags": [
+          "billing"
+        ]
+      }
+    },
+    "/crypto/currencies": {
+      "get": {
+        "description": "List all supported cryptocurrencies with live rates.",
+        "operationId": "listCryptoCurrencies",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/CryptoCurrency"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful response.",
+            "headers": {
+              "RateLimit-Limit": {
+                "description": "Requests allowed per window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Remaining": {
+                "description": "Requests remaining in the current window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Reset": {
+                "description": "Seconds until the window resets.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Missing or invalid access token."
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The token lacks the required scope or access to the resource."
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The resource does not exist or is not visible to the caller."
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The request body or parameters are invalid."
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Rate limit exceeded. Retry after the indicated delay.",
+            "headers": {
+              "Retry-After": {
+                "description": "Seconds to wait before retrying.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "502": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The upstream data service returned an error."
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "streamloop:read"
+            ]
+          },
+          {
+            "bearerAuth": []
+          },
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "List crypto currencies",
+        "tags": [
+          "crypto"
+        ]
+      }
+    },
+    "/crypto/deposit-address": {
+      "get": {
+        "description": "Get (or lazily create) a deposit address for the authenticated user.\nid must be a valid 0xProcessing currency identifier from cryptoCurrencies.",
+        "operationId": "getCryptoDepositAddress",
+        "parameters": [
+          {
+            "description": "Currency id from GET /crypto/currencies (e.g. a USDT/USDC/BTC/ETH/SOL identifier).",
+            "in": "query",
+            "name": "currency",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CryptoDepositAddress"
+                }
+              }
+            },
+            "description": "Successful response.",
+            "headers": {
+              "RateLimit-Limit": {
+                "description": "Requests allowed per window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Remaining": {
+                "description": "Requests remaining in the current window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Reset": {
+                "description": "Seconds until the window resets.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Missing or invalid access token."
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The token lacks the required scope or access to the resource."
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The resource does not exist or is not visible to the caller."
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The request body or parameters are invalid."
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Rate limit exceeded. Retry after the indicated delay.",
+            "headers": {
+              "Retry-After": {
+                "description": "Seconds to wait before retrying.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "502": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The upstream data service returned an error."
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "streamloop:billing"
+            ]
+          },
+          {
+            "bearerAuth": []
+          },
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Get a crypto deposit address",
+        "tags": [
+          "crypto"
+        ]
+      }
+    },
+    "/destinations": {
+      "get": {
+        "operationId": "listDestinations",
+        "parameters": [
+          {
+            "description": "Maximum items to return (1-100, default 20).",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Pagination cursor from a previous response's `page.nextCursor`.",
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DestinationList"
+                }
+              }
+            },
+            "description": "Successful response.",
+            "headers": {
+              "RateLimit-Limit": {
+                "description": "Requests allowed per window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Remaining": {
+                "description": "Requests remaining in the current window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Reset": {
+                "description": "Seconds until the window resets.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Missing or invalid access token."
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The token lacks the required scope or access to the resource."
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The resource does not exist or is not visible to the caller."
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The request body or parameters are invalid."
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Rate limit exceeded. Retry after the indicated delay.",
+            "headers": {
+              "Retry-After": {
+                "description": "Seconds to wait before retrying.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "502": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The upstream data service returned an error."
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "streamloop:read"
+            ]
+          },
+          {
+            "bearerAuth": []
+          },
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "List destinations",
+        "tags": [
+          "destinations"
+        ]
+      },
+      "post": {
+        "operationId": "createRtmpDestination",
+        "parameters": [
+          {
+            "description": "Optional client-generated key. A repeated request with the same key replays the original response (within 24h) instead of re-executing — safe retries.",
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateRtmpDestinationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Destination"
+                }
+              }
+            },
+            "description": "Created.",
+            "headers": {
+              "RateLimit-Limit": {
+                "description": "Requests allowed per window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Remaining": {
+                "description": "Requests remaining in the current window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Reset": {
+                "description": "Seconds until the window resets.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Missing or invalid access token."
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The token lacks the required scope or access to the resource."
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The resource does not exist or is not visible to the caller."
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The request body or parameters are invalid."
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Rate limit exceeded. Retry after the indicated delay.",
+            "headers": {
+              "Retry-After": {
+                "description": "Seconds to wait before retrying.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "502": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The upstream data service returned an error."
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "streamloop:write"
+            ]
+          },
+          {
+            "bearerAuth": []
+          },
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Create an RTMP destination",
+        "tags": [
+          "destinations"
+        ]
+      }
+    },
+    "/me": {
+      "get": {
+        "operationId": "getMe",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/User"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              }
+            },
+            "description": "Successful response.",
+            "headers": {
+              "RateLimit-Limit": {
+                "description": "Requests allowed per window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Remaining": {
+                "description": "Requests remaining in the current window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Reset": {
+                "description": "Seconds until the window resets.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Missing or invalid access token."
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The token lacks the required scope or access to the resource."
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The resource does not exist or is not visible to the caller."
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The request body or parameters are invalid."
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Rate limit exceeded. Retry after the indicated delay.",
+            "headers": {
+              "Retry-After": {
+                "description": "Seconds to wait before retrying.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "502": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The upstream data service returned an error."
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "streamloop:read"
+            ]
+          },
+          {
+            "bearerAuth": []
+          },
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Get your profile",
+        "tags": [
+          "account"
+        ]
+      }
+    },
+    "/openapi.json": {
+      "get": {
+        "operationId": "getOpenapi",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "The OpenAPI document."
+          }
+        },
+        "security": [],
+        "summary": "This OpenAPI 3.1 document — unauthenticated.",
+        "tags": [
+          "meta"
+        ]
+      }
+    },
+    "/playlists": {
+      "get": {
+        "operationId": "listPlaylists",
+        "parameters": [
+          {
+            "description": "Maximum items to return (1-100, default 20).",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Pagination cursor from a previous response's `page.nextCursor`.",
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlaylistList"
+                }
+              }
+            },
+            "description": "Successful response.",
+            "headers": {
+              "RateLimit-Limit": {
+                "description": "Requests allowed per window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Remaining": {
+                "description": "Requests remaining in the current window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Reset": {
+                "description": "Seconds until the window resets.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Missing or invalid access token."
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The token lacks the required scope or access to the resource."
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The resource does not exist or is not visible to the caller."
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The request body or parameters are invalid."
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Rate limit exceeded. Retry after the indicated delay.",
+            "headers": {
+              "Retry-After": {
+                "description": "Seconds to wait before retrying.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "502": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The upstream data service returned an error."
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "streamloop:read"
+            ]
+          },
+          {
+            "bearerAuth": []
+          },
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "List playlists",
+        "tags": [
+          "playlists"
+        ]
+      }
+    },
+    "/playlists/{id}": {
+      "get": {
+        "description": "Fetches an object given its ID.",
+        "operationId": "getPlaylist",
+        "parameters": [
+          {
+            "description": "Resource identifier.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/Playlist"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              }
+            },
+            "description": "Successful response.",
+            "headers": {
+              "RateLimit-Limit": {
+                "description": "Requests allowed per window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Remaining": {
+                "description": "Requests remaining in the current window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Reset": {
+                "description": "Seconds until the window resets.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Missing or invalid access token."
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The token lacks the required scope or access to the resource."
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The resource does not exist or is not visible to the caller."
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The request body or parameters are invalid."
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Rate limit exceeded. Retry after the indicated delay.",
+            "headers": {
+              "Retry-After": {
+                "description": "Seconds to wait before retrying.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "502": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The upstream data service returned an error."
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "streamloop:read"
+            ]
+          },
+          {
+            "bearerAuth": []
+          },
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Get a playlist",
+        "tags": [
+          "playlists"
+        ]
+      }
+    },
+    "/playlists/{id}/copy": {
+      "post": {
+        "description": "Spec copy between two playlists the caller owns. Target must be\nempty. Caller pushes target via stream launch to actually play it.",
+        "operationId": "copyPlaylist",
+        "parameters": [
+          {
+            "description": "Resource identifier.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Optional client-generated key. A repeated request with the same key replays the original response (within 24h) instead of re-executing — safe retries.",
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CopyPlaylistRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Playlist"
+                }
+              }
+            },
+            "description": "Successful response.",
+            "headers": {
+              "RateLimit-Limit": {
+                "description": "Requests allowed per window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Remaining": {
+                "description": "Requests remaining in the current window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Reset": {
+                "description": "Seconds until the window resets.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Missing or invalid access token."
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The token lacks the required scope or access to the resource."
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The resource does not exist or is not visible to the caller."
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The request body or parameters are invalid."
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Rate limit exceeded. Retry after the indicated delay.",
+            "headers": {
+              "Retry-After": {
+                "description": "Seconds to wait before retrying.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "502": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The upstream data service returned an error."
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "streamloop:write"
+            ]
+          },
+          {
+            "bearerAuth": []
+          },
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Copy a playlist",
+        "tags": [
+          "playlists"
+        ]
+      }
+    },
+    "/playlists/{id}/operations": {
+      "post": {
+        "description": "Batched spec mutation. Ops apply in order; each sees the state\nproduced by earlier ops. On any validation failure, nothing is\nwritten. Does not affect running streams — preparation happens\non stream launch.",
+        "operationId": "applyPlaylistOperations",
+        "parameters": [
+          {
+            "description": "Resource identifier.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Optional client-generated key. A repeated request with the same key replays the original response (within 24h) instead of re-executing — safe retries.",
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplyPlaylistOperationsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Playlist"
+                }
+              }
+            },
+            "description": "Successful response.",
+            "headers": {
+              "RateLimit-Limit": {
+                "description": "Requests allowed per window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Remaining": {
+                "description": "Requests remaining in the current window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Reset": {
+                "description": "Seconds until the window resets.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Missing or invalid access token."
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The token lacks the required scope or access to the resource."
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The resource does not exist or is not visible to the caller."
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The request body or parameters are invalid."
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Rate limit exceeded. Retry after the indicated delay.",
+            "headers": {
+              "Retry-After": {
+                "description": "Seconds to wait before retrying.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "502": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The upstream data service returned an error."
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "streamloop:write"
+            ]
+          },
+          {
+            "bearerAuth": []
+          },
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Apply playlist operations",
+        "tags": [
+          "playlists"
+        ]
+      }
+    },
+    "/playlists/{id}/publish": {
+      "post": {
+        "description": "Publish the draft playlist as the new LIVE snapshot. Always async\n(ADR 0003): the resolver marks StreamState.processing_state as\nprocessing, signals PreparePlaylistWorkflow, and returns. Editor\npolls Playlist.publishStatus to observe the PREPARING -> IDLE /\nFAILED transition. Top-level errors carry extensions.code one of:\nSTALE_DRAFT, EMPTY_PLAYLIST, BROKEN_ITEM, RECIPE_MISMATCH,\nNOT_LIVE, NOT_FOUND, INTERNAL.",
+        "operationId": "publishPlaylist",
+        "parameters": [
+          {
+            "description": "Resource identifier.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Optional client-generated key. A repeated request with the same key replays the original response (within 24h) instead of re-executing — safe retries.",
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PublishPlaylistRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Playlist"
+                }
+              }
+            },
+            "description": "Successful response.",
+            "headers": {
+              "RateLimit-Limit": {
+                "description": "Requests allowed per window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Remaining": {
+                "description": "Requests remaining in the current window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Reset": {
+                "description": "Seconds until the window resets.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Missing or invalid access token."
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The token lacks the required scope or access to the resource."
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The resource does not exist or is not visible to the caller."
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The request body or parameters are invalid."
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Rate limit exceeded. Retry after the indicated delay.",
+            "headers": {
+              "Retry-After": {
+                "description": "Seconds to wait before retrying.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "502": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The upstream data service returned an error."
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "streamloop:write"
+            ]
+          },
+          {
+            "bearerAuth": []
+          },
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Publish a playlist",
+        "tags": [
+          "playlists"
+        ]
+      }
+    },
+    "/status": {
+      "get": {
+        "operationId": "getStatus",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            },
+            "description": "Service is operational."
+          }
+        },
+        "security": [],
+        "summary": "Service status (liveness/health) — unauthenticated.",
+        "tags": [
+          "meta"
+        ]
+      }
+    },
+    "/streams": {
+      "get": {
+        "description": "List the streams you own. Supply the ids parameter to fetch a specific set; otherwise the full collection is returned, cursor-paginated.",
+        "operationId": "listStreams",
+        "parameters": [
+          {
+            "description": "Maximum items to return (1-100, default 20).",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Pagination cursor from a previous response's `page.nextCursor`.",
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter to specific stream IDs (repeatable, or comma-separated). Returns only the streams you own among them, in the usual paginated envelope.",
+            "explode": true,
+            "in": "query",
+            "name": "ids",
+            "required": false,
+            "schema": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "style": "form"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StreamList"
+                }
+              }
+            },
+            "description": "Successful response.",
+            "headers": {
+              "RateLimit-Limit": {
+                "description": "Requests allowed per window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Remaining": {
+                "description": "Requests remaining in the current window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Reset": {
+                "description": "Seconds until the window resets.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Missing or invalid access token."
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The token lacks the required scope or access to the resource."
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The resource does not exist or is not visible to the caller."
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The request body or parameters are invalid."
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Rate limit exceeded. Retry after the indicated delay.",
+            "headers": {
+              "Retry-After": {
+                "description": "Seconds to wait before retrying.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "502": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The upstream data service returned an error."
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "streamloop:read"
+            ]
+          },
+          {
+            "bearerAuth": []
+          },
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "List streams",
+        "tags": [
+          "streams"
+        ]
+      },
+      "post": {
+        "operationId": "createStream",
+        "parameters": [
+          {
+            "description": "Optional client-generated key. A repeated request with the same key replays the original response (within 24h) instead of re-executing — safe retries.",
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateStreamRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Stream"
+                }
+              }
+            },
+            "description": "Created.",
+            "headers": {
+              "RateLimit-Limit": {
+                "description": "Requests allowed per window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Remaining": {
+                "description": "Requests remaining in the current window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Reset": {
+                "description": "Seconds until the window resets.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Missing or invalid access token."
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The token lacks the required scope or access to the resource."
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The resource does not exist or is not visible to the caller."
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The request body or parameters are invalid."
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Rate limit exceeded. Retry after the indicated delay.",
+            "headers": {
+              "Retry-After": {
+                "description": "Seconds to wait before retrying.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "502": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The upstream data service returned an error."
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "streamloop:write"
+            ]
+          },
+          {
+            "bearerAuth": []
+          },
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Create a stream",
+        "tags": [
+          "streams"
+        ]
+      }
+    },
+    "/streams/{id}": {
+      "delete": {
+        "operationId": "deleteStream",
+        "parameters": [
+          {
+            "description": "Resource identifier.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No content.",
+            "headers": {
+              "RateLimit-Limit": {
+                "description": "Requests allowed per window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Remaining": {
+                "description": "Requests remaining in the current window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Reset": {
+                "description": "Seconds until the window resets.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Missing or invalid access token."
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The token lacks the required scope or access to the resource."
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The resource does not exist or is not visible to the caller."
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The request body or parameters are invalid."
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Rate limit exceeded. Retry after the indicated delay.",
+            "headers": {
+              "Retry-After": {
+                "description": "Seconds to wait before retrying.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "502": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The upstream data service returned an error."
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "streamloop:destructive"
+            ]
+          },
+          {
+            "bearerAuth": []
+          },
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Delete a stream",
+        "tags": [
+          "streams"
+        ]
+      },
+      "get": {
+        "description": "Fetches an object given its ID.",
+        "operationId": "getStream",
+        "parameters": [
+          {
+            "description": "Resource identifier.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/Stream"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              }
+            },
+            "description": "Successful response.",
+            "headers": {
+              "RateLimit-Limit": {
+                "description": "Requests allowed per window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Remaining": {
+                "description": "Requests remaining in the current window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Reset": {
+                "description": "Seconds until the window resets.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Missing or invalid access token."
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The token lacks the required scope or access to the resource."
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The resource does not exist or is not visible to the caller."
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The request body or parameters are invalid."
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Rate limit exceeded. Retry after the indicated delay.",
+            "headers": {
+              "Retry-After": {
+                "description": "Seconds to wait before retrying.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "502": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The upstream data service returned an error."
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "streamloop:read"
+            ]
+          },
+          {
+            "bearerAuth": []
+          },
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Get a stream",
+        "tags": [
+          "streams"
+        ]
+      },
+      "patch": {
+        "description": "Update a stream. When `retryMirror: true`, the resolver also writes a\nfresh MirrorIntent for the latest desired state of this stream's YouTube\nschedule mirror — used to recover after reauth / quota reset / channel\nfreeing. retryMirror is a sibling argument rather than a field on\nUpdateStreamInput because that input type is generated by ent and\ncannot carry non-column fields. Has no effect when the stream has no\nexisting MirrorIntent (`INVALID_ARG` is returned in that case).\n\nWhen `input.status` is set, the resolver translates the legacy enum value to\nthe equivalent lifecycle command and routes it through\n`streamlifecycle.Transition()` instead of writing the column directly.\n`input.status` is deprecated; frontends should call the command mutations\ndirectly.",
+        "operationId": "updateStream",
+        "parameters": [
+          {
+            "description": "Resource identifier.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Optional client-generated key. A repeated request with the same key replays the original response (within 24h) instead of re-executing — safe retries.",
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateStreamRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Stream"
+                }
+              }
+            },
+            "description": "Successful response.",
+            "headers": {
+              "RateLimit-Limit": {
+                "description": "Requests allowed per window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Remaining": {
+                "description": "Requests remaining in the current window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Reset": {
+                "description": "Seconds until the window resets.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Missing or invalid access token."
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The token lacks the required scope or access to the resource."
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The resource does not exist or is not visible to the caller."
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The request body or parameters are invalid."
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Rate limit exceeded. Retry after the indicated delay.",
+            "headers": {
+              "Retry-After": {
+                "description": "Seconds to wait before retrying.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "502": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The upstream data service returned an error."
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "streamloop:write"
+            ]
+          },
+          {
+            "bearerAuth": []
+          },
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Update a stream",
+        "tags": [
+          "streams"
+        ]
+      }
+    },
+    "/streams/{id}/live-stats": {
+      "get": {
+        "description": "Fetches an object given its ID.",
+        "operationId": "getStreamLiveStats",
+        "parameters": [
+          {
+            "description": "Resource identifier.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/StreamLiveStats"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              }
+            },
+            "description": "Successful response.",
+            "headers": {
+              "RateLimit-Limit": {
+                "description": "Requests allowed per window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Remaining": {
+                "description": "Requests remaining in the current window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Reset": {
+                "description": "Seconds until the window resets.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Missing or invalid access token."
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The token lacks the required scope or access to the resource."
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The resource does not exist or is not visible to the caller."
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The request body or parameters are invalid."
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Rate limit exceeded. Retry after the indicated delay.",
+            "headers": {
+              "Retry-After": {
+                "description": "Seconds to wait before retrying.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "502": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The upstream data service returned an error."
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "streamloop:read"
+            ]
+          },
+          {
+            "bearerAuth": []
+          },
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Get live stream stats",
+        "tags": [
+          "streams"
+        ]
+      }
+    },
+    "/streams/{id}/readiness": {
+      "get": {
+        "description": "Runs the same checks as updateStream(status:ACTIVE) without mutating.",
+        "operationId": "checkStreamReadiness",
+        "parameters": [
+          {
+            "description": "Resource identifier.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StreamReadiness"
+                }
+              }
+            },
+            "description": "Successful response.",
+            "headers": {
+              "RateLimit-Limit": {
+                "description": "Requests allowed per window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Remaining": {
+                "description": "Requests remaining in the current window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Reset": {
+                "description": "Seconds until the window resets.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Missing or invalid access token."
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The token lacks the required scope or access to the resource."
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The resource does not exist or is not visible to the caller."
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The request body or parameters are invalid."
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Rate limit exceeded. Retry after the indicated delay.",
+            "headers": {
+              "Retry-After": {
+                "description": "Seconds to wait before retrying.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "502": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The upstream data service returned an error."
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "streamloop:read"
+            ]
+          },
+          {
+            "bearerAuth": []
+          },
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Check stream readiness",
+        "tags": [
+          "streams"
+        ]
+      }
+    },
+    "/streams/{id}/schedule": {
+      "delete": {
+        "description": "Undo a Scheduled stream, returning it to Draft via\n`streamlifecycle.Transition(_, CmdCancelSchedule)`.",
+        "operationId": "cancelStreamSchedule",
+        "parameters": [
+          {
+            "description": "Resource identifier.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Stream"
+                }
+              }
+            },
+            "description": "Successful response.",
+            "headers": {
+              "RateLimit-Limit": {
+                "description": "Requests allowed per window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Remaining": {
+                "description": "Requests remaining in the current window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Reset": {
+                "description": "Seconds until the window resets.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Missing or invalid access token."
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The token lacks the required scope or access to the resource."
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The resource does not exist or is not visible to the caller."
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The request body or parameters are invalid."
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Rate limit exceeded. Retry after the indicated delay.",
+            "headers": {
+              "Retry-After": {
+                "description": "Seconds to wait before retrying.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "502": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The upstream data service returned an error."
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "streamloop:write"
+            ]
+          },
+          {
+            "bearerAuth": []
+          },
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Cancel a stream's schedule",
+        "tags": [
+          "streams"
+        ]
+      },
+      "post": {
+        "description": "Move the stream into Scheduled with a future start via\n`streamlifecycle.Transition(_, CmdSchedule{StartAt, EndAt})`. `scheduleEndAt`\nis optional; open-ended schedules are supported.",
+        "operationId": "scheduleStream",
+        "parameters": [
+          {
+            "description": "Resource identifier.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Optional client-generated key. A repeated request with the same key replays the original response (within 24h) instead of re-executing — safe retries.",
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ScheduleStreamRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Stream"
+                }
+              }
+            },
+            "description": "Successful response.",
+            "headers": {
+              "RateLimit-Limit": {
+                "description": "Requests allowed per window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Remaining": {
+                "description": "Requests remaining in the current window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Reset": {
+                "description": "Seconds until the window resets.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Missing or invalid access token."
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The token lacks the required scope or access to the resource."
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The resource does not exist or is not visible to the caller."
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The request body or parameters are invalid."
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Rate limit exceeded. Retry after the indicated delay.",
+            "headers": {
+              "Retry-After": {
+                "description": "Seconds to wait before retrying.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "502": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The upstream data service returned an error."
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "streamloop:write"
+            ]
+          },
+          {
+            "bearerAuth": []
+          },
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Schedule a stream",
+        "tags": [
+          "streams"
+        ]
+      }
+    },
+    "/streams/{id}/start": {
+      "post": {
+        "description": "Move the stream into Activating via `streamlifecycle.Transition(_, CmdStart)`.\nReturns the loaded stream after the lifecycle owner accepted the command. The\nresolver does not block on the orchestrator/agent observing the change.\n\nTyped errors (extensions.code):\n  - STREAM_ILLEGAL_TRANSITION when the current state forbids start\n  - STREAM_GUARD_FAILED when a pre-flight guard rejected start\n    (Extensions carries `reason` + `cause`).",
+        "operationId": "startStream",
+        "parameters": [
+          {
+            "description": "Resource identifier.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Optional client-generated key. A repeated request with the same key replays the original response (within 24h) instead of re-executing — safe retries.",
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Stream"
+                }
+              }
+            },
+            "description": "Successful response.",
+            "headers": {
+              "RateLimit-Limit": {
+                "description": "Requests allowed per window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Remaining": {
+                "description": "Requests remaining in the current window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Reset": {
+                "description": "Seconds until the window resets.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Missing or invalid access token."
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The token lacks the required scope or access to the resource."
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The resource does not exist or is not visible to the caller."
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The request body or parameters are invalid."
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Rate limit exceeded. Retry after the indicated delay.",
+            "headers": {
+              "Retry-After": {
+                "description": "Seconds to wait before retrying.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "502": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The upstream data service returned an error."
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "streamloop:write"
+            ]
+          },
+          {
+            "bearerAuth": []
+          },
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Start a stream",
+        "tags": [
+          "streams"
+        ]
+      }
+    },
+    "/streams/{id}/stop": {
+      "post": {
+        "description": "Move the stream into Stopping via `streamlifecycle.Transition(_, CmdStop)`.\nStop is legal from any active branch.",
+        "operationId": "stopStream",
+        "parameters": [
+          {
+            "description": "Resource identifier.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Optional client-generated key. A repeated request with the same key replays the original response (within 24h) instead of re-executing — safe retries.",
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Stream"
+                }
+              }
+            },
+            "description": "Successful response.",
+            "headers": {
+              "RateLimit-Limit": {
+                "description": "Requests allowed per window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Remaining": {
+                "description": "Requests remaining in the current window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Reset": {
+                "description": "Seconds until the window resets.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Missing or invalid access token."
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The token lacks the required scope or access to the resource."
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The resource does not exist or is not visible to the caller."
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The request body or parameters are invalid."
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Rate limit exceeded. Retry after the indicated delay.",
+            "headers": {
+              "Retry-After": {
+                "description": "Seconds to wait before retrying.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "502": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The upstream data service returned an error."
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "streamloop:write"
+            ]
+          },
+          {
+            "bearerAuth": []
+          },
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Stop a stream",
+        "tags": [
+          "streams"
+        ]
+      }
+    },
+    "/uploads": {
+      "get": {
+        "operationId": "listUploads",
+        "parameters": [
+          {
+            "description": "Maximum items to return (1-100, default 20).",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Pagination cursor from a previous response's `page.nextCursor`.",
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UploadList"
+                }
+              }
+            },
+            "description": "Successful response.",
+            "headers": {
+              "RateLimit-Limit": {
+                "description": "Requests allowed per window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Remaining": {
+                "description": "Requests remaining in the current window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Reset": {
+                "description": "Seconds until the window resets.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Missing or invalid access token."
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The token lacks the required scope or access to the resource."
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The resource does not exist or is not visible to the caller."
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The request body or parameters are invalid."
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Rate limit exceeded. Retry after the indicated delay.",
+            "headers": {
+              "Retry-After": {
+                "description": "Seconds to wait before retrying.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "502": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The upstream data service returned an error."
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "streamloop:read"
+            ]
+          },
+          {
+            "bearerAuth": []
+          },
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "List uploads",
+        "tags": [
+          "uploads"
+        ]
+      },
+      "post": {
+        "description": "Creates an upload record for a direct single-PUT transfer. Next, request a presigned URL with POST /uploads/{id}/upload-url, PUT the bytes to it, then mark the upload complete with POST /uploads/{id}/complete.",
+        "operationId": "createUpload",
+        "parameters": [
+          {
+            "description": "Optional client-generated key. A repeated request with the same key replays the original response (within 24h) instead of re-executing — safe retries.",
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUploadRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Upload"
+                }
+              }
+            },
+            "description": "Created.",
+            "headers": {
+              "RateLimit-Limit": {
+                "description": "Requests allowed per window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Remaining": {
+                "description": "Requests remaining in the current window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Reset": {
+                "description": "Seconds until the window resets.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Missing or invalid access token."
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The token lacks the required scope or access to the resource."
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The resource does not exist or is not visible to the caller."
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The request body or parameters are invalid."
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Rate limit exceeded. Retry after the indicated delay.",
+            "headers": {
+              "Retry-After": {
+                "description": "Seconds to wait before retrying.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "502": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The upstream data service returned an error."
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "streamloop:write"
+            ]
+          },
+          {
+            "bearerAuth": []
+          },
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Create an upload",
+        "tags": [
+          "uploads"
+        ]
+      }
+    },
+    "/uploads/from-link": {
+      "post": {
+        "description": "Starts an asynchronous import from an external URL and returns 202 Accepted. Poll GET /uploads/{id} and watch externalSource.state until it reaches completed.",
+        "operationId": "createUploadFromLink",
+        "parameters": [
+          {
+            "description": "Optional client-generated key. A repeated request with the same key replays the original response (within 24h) instead of re-executing — safe retries.",
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUploadFromLinkRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Upload"
+                }
+              }
+            },
+            "description": "Accepted — the request was accepted for asynchronous processing; poll the resource for completion.",
+            "headers": {
+              "RateLimit-Limit": {
+                "description": "Requests allowed per window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Remaining": {
+                "description": "Requests remaining in the current window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Reset": {
+                "description": "Seconds until the window resets.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Missing or invalid access token."
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The token lacks the required scope or access to the resource."
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The resource does not exist or is not visible to the caller."
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The request body or parameters are invalid."
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Rate limit exceeded. Retry after the indicated delay.",
+            "headers": {
+              "Retry-After": {
+                "description": "Seconds to wait before retrying.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "502": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The upstream data service returned an error."
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "streamloop:write"
+            ]
+          },
+          {
+            "bearerAuth": []
+          },
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Import an upload from a link",
+        "tags": [
+          "uploads"
+        ]
+      }
+    },
+    "/uploads/{id}": {
+      "delete": {
+        "operationId": "removeUpload",
+        "parameters": [
+          {
+            "description": "Resource identifier.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No content.",
+            "headers": {
+              "RateLimit-Limit": {
+                "description": "Requests allowed per window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Remaining": {
+                "description": "Requests remaining in the current window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Reset": {
+                "description": "Seconds until the window resets.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Missing or invalid access token."
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The token lacks the required scope or access to the resource."
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The resource does not exist or is not visible to the caller."
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The request body or parameters are invalid."
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Rate limit exceeded. Retry after the indicated delay.",
+            "headers": {
+              "Retry-After": {
+                "description": "Seconds to wait before retrying.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "502": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The upstream data service returned an error."
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "streamloop:destructive"
+            ]
+          },
+          {
+            "bearerAuth": []
+          },
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Delete an upload",
+        "tags": [
+          "uploads"
+        ]
+      },
+      "get": {
+        "description": "Fetches an object given its ID.",
+        "operationId": "getUpload",
+        "parameters": [
+          {
+            "description": "Resource identifier.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/Upload"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              }
+            },
+            "description": "Successful response.",
+            "headers": {
+              "RateLimit-Limit": {
+                "description": "Requests allowed per window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Remaining": {
+                "description": "Requests remaining in the current window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Reset": {
+                "description": "Seconds until the window resets.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Missing or invalid access token."
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The token lacks the required scope or access to the resource."
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The resource does not exist or is not visible to the caller."
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The request body or parameters are invalid."
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Rate limit exceeded. Retry after the indicated delay.",
+            "headers": {
+              "Retry-After": {
+                "description": "Seconds to wait before retrying.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "502": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The upstream data service returned an error."
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "streamloop:read"
+            ]
+          },
+          {
+            "bearerAuth": []
+          },
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Get an upload",
+        "tags": [
+          "uploads"
+        ]
+      }
+    },
+    "/uploads/{id}/complete": {
+      "post": {
+        "operationId": "markUploadComplete",
+        "parameters": [
+          {
+            "description": "Resource identifier.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Optional client-generated key. A repeated request with the same key replays the original response (within 24h) instead of re-executing — safe retries.",
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Upload"
+                }
+              }
+            },
+            "description": "Successful response.",
+            "headers": {
+              "RateLimit-Limit": {
+                "description": "Requests allowed per window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Remaining": {
+                "description": "Requests remaining in the current window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Reset": {
+                "description": "Seconds until the window resets.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Missing or invalid access token."
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The token lacks the required scope or access to the resource."
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The resource does not exist or is not visible to the caller."
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The request body or parameters are invalid."
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Rate limit exceeded. Retry after the indicated delay.",
+            "headers": {
+              "Retry-After": {
+                "description": "Seconds to wait before retrying.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "502": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The upstream data service returned an error."
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "streamloop:write"
+            ]
+          },
+          {
+            "bearerAuth": []
+          },
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Mark an upload complete",
+        "tags": [
+          "uploads"
+        ]
+      }
+    },
+    "/uploads/{id}/upload-url": {
+      "post": {
+        "operationId": "generateUploadUrl",
+        "parameters": [
+          {
+            "description": "Resource identifier.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Optional client-generated key. A repeated request with the same key replays the original response (within 24h) instead of re-executing — safe retries.",
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              }
+            },
+            "description": "Successful response.",
+            "headers": {
+              "RateLimit-Limit": {
+                "description": "Requests allowed per window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Remaining": {
+                "description": "Requests remaining in the current window.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Reset": {
+                "description": "Seconds until the window resets.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Missing or invalid access token."
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The token lacks the required scope or access to the resource."
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The resource does not exist or is not visible to the caller."
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The request body or parameters are invalid."
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Rate limit exceeded. Retry after the indicated delay.",
+            "headers": {
+              "Retry-After": {
+                "description": "Seconds to wait before retrying.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "502": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "The upstream data service returned an error."
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "streamloop:write"
+            ]
+          },
+          {
+            "bearerAuth": []
+          },
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Generate a presigned upload URL",
+        "tags": [
+          "uploads"
+        ]
+      }
+    }
+  },
+  "security": [
+    {
+      "oauth2": []
+    },
+    {
+      "bearerAuth": []
+    },
+    {
+      "apiKey": []
+    }
+  ],
+  "servers": [
+    {
+      "description": "Production",
+      "url": "https://api.streamloop.app/v1"
+    }
+  ],
+  "tags": [
+    {
+      "description": "The authenticated user's account.",
+      "name": "account"
+    },
+    {
+      "description": "Credits, usage analytics, invoices, and top-ups.",
+      "name": "billing"
+    },
+    {
+      "description": "Crypto deposit options for topping up credits.",
+      "name": "crypto"
+    },
+    {
+      "description": "Manage streaming destinations (custom RTMP).",
+      "name": "destinations"
+    },
+    {
+      "description": "Service metadata: status and the OpenAPI document (unauthenticated).",
+      "name": "meta"
+    },
+    {
+      "description": "Manage and publish stream playlists.",
+      "name": "playlists"
+    },
+    {
+      "description": "Create, control, schedule, and monitor 24/7 loop streams.",
+      "name": "streams"
+    },
+    {
+      "description": "Upload and manage source media (video/audio).",
+      "name": "uploads"
+    }
+  ]
+}

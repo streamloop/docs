@@ -19,7 +19,7 @@
     "options": ["copy", "view", "assistant", "mcp", "add-mcp"]
   },
   "api": {
-    "openapi": "https://api.streamloop.app/v1/openapi.json",
+    "openapi": "api-reference/openapi.json",
     "playground": {
       "display": "interactive"
     },
@@ -116,7 +116,7 @@
           {
             "group": "REST API",
             "icon": "code",
-            "openapi": "https://api.streamloop.app/v1/openapi.json"
+            "openapi": "api-reference/openapi.json"
           },
           {
             "group": "MCP server",
