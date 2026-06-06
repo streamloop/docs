@@ -9,6 +9,12 @@
     "dark": "#166E3F"
   },
   "favicon": "/favicon.ico",
+  "seo": {
+    "metatags": {
+      "canonical": "https://streamloop.app/docs",
+      "google-site-verification": "boTPQBp0fR64j1H5dh1GQjKRbK94Upm8SbsCRUu12t0"
+    }
+  },
   "icons": {
     "library": "lucide"
   },
